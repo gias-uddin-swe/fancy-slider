@@ -69,3 +69,6 @@ img {
   text-align: center;
   margin-top: 50px;
 }
+#error-message {
+  display: none;
+}

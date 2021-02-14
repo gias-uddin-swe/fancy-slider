@@ -31,25 +31,25 @@ const showImages = (images) => {
   images.forEach((image) => {
     let div = document.createElement("div");
     div.className = "col-lg-3 col-md-4 col-xs-6 img-item mb-2";
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img  id="img-container" class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">
+    <p  id ="caption" class = "text-center"><span>Description: </span> ${image.tags}</p>
+    `;
+
     gallery.appendChild(div);
   });
 };
-
 const getImages = (query) => {
   toggleSpinner();
-  fetch(
-    `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
-  )
-    .then((response) => response.json())
-    .then((data) => showImages(data.hits))
-
-    .catch((err) => displayError(err));
+  try {
+    fetch(
+      `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
+    )
+      .then((response) => response.json())
+      .then((data) => showImages(data.hits));
+  } catch (err) {
+    document.getElementById("error-message").style.display = "block";
+  }
 };
-
-//const errorMessage = () => {
-
-// };
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
@@ -168,9 +168,4 @@ const toggleSpinner = () => {
   spinner.classList.toggle("d-none");
   imageContainer.classList.toggle("d-none");
 };
-
-// display error
-const displayError = (err) => {
-  const errorTag = document.getElementById("error-message");
-  errorTag.innerText = "plaease try again leter";
-};
+// the end //
