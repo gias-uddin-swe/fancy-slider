@@ -24,6 +24,22 @@
       </div>
       <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
     </div>
+
+    <!-- addd errror meessage on the  -->
+<h3 id="error-message" class="text-danger"></h3>
+
+
+<div id="loading-spinner" class="d-none ">
+  <div  class="spinner-border text-primary  " role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+
+
+
+
+
     <section class="images">
       <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
         <h3 class="head-title text-center">Select image for create slider</h3>
@@ -37,7 +53,7 @@
       </div>
     </section>
     <!-- slider -->
-    <div class="main">
+    <div id="image-container" class="main">
       <section class="mt-5" id="sliders">
       </section>
       <div class="dots d-flex mt-2 w-100 justify-content-center align-items-center bg-light">
@@ -48,13 +64,7 @@
   </div>
 
 
-<!-- addd errror meessage on the  -->
-<h3 id="error-message" class="text-danger"></h3>
 
-
-  <div id="loading-spinner" class="spinner-border text-primary d-none " role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
 
 
 

@@ -22,10 +22,12 @@ document
 
 // show images
 const showImages = (images) => {
+  toggleSpinner();
   imagesArea.style.display = "block";
   gallery.innerHTML = "";
   // show gallery title
   galleryHeader.style.display = "flex";
+
   images.forEach((image) => {
     let div = document.createElement("div");
     div.className = "col-lg-3 col-md-4 col-xs-6 img-item mb-2";
@@ -35,6 +37,7 @@ const showImages = (images) => {
 };
 
 const getImages = (query) => {
+  toggleSpinner();
   fetch(
     `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
   )
@@ -58,6 +61,7 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
+    element.classList.remove("added");
     sliders.splice(-1, 1);
   }
 };
@@ -155,15 +159,18 @@ searchBtn.addEventListener("click", function () {
 sliderBtn.addEventListener("click", function () {
   createSlider();
 });
-// add new features  loading spinnner
+
+// add new features  loading spinner
 
 const toggleSpinner = () => {
   const spinner = document.getElementById("loading-spinner");
+  const imageContainer = document.getElementById("image-container");
   spinner.classList.toggle("d-none");
+  imageContainer.classList.toggle("d-none");
 };
 
 // display error
 const displayError = (err) => {
   const errorTag = document.getElementById("error-message");
-  errorTag.innerText = error;
+  errorTag.innerText = "plaease try again leter";
 };
